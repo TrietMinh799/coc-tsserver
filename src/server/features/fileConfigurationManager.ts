@@ -40,6 +40,7 @@ export interface SuggestOptions {
   readonly importStatementSuggestions: boolean
   readonly includeCompletionsForImportStatements: boolean
   readonly includeCompletionsWithSnippetText: boolean
+  readonly includeCompletionsWithClassMemberSnippets: boolean
 }
 
 export default class FileConfigurationManager {
@@ -162,7 +163,8 @@ export default class FileConfigurationManager {
       importStatementSuggestions: config.get<boolean>('importStatements', true),
       includeCompletionsForImportStatements: config.get<boolean>('includeCompletionsForImportStatements', true),
       includeCompletionsWithSnippetText: config.get<boolean>('includeCompletionsWithSnippetText', true),
-      includeAutomaticOptionalChainCompletions: config.get<boolean>('includeAutomaticOptionalChainCompletions', true)
+      includeAutomaticOptionalChainCompletions: config.get<boolean>('includeAutomaticOptionalChainCompletions', true),
+      includeCompletionsWithClassMemberSnippets: config.get<boolean>('includeCompletionsWithClassMemberSnippets', true)
     }
   }
 
@@ -181,6 +183,7 @@ export default class FileConfigurationManager {
       providePrefixAndSuffixTextForRename: config.get<boolean>('renameShorthandProperties', true) === false ? false : config.get<boolean>('useAliasesForRenames', true),
       includeCompletionsForImportStatements: this.getCompleteOptions(language).includeCompletionsForImportStatements,
       includeCompletionsWithSnippetText: this.getCompleteOptions(language).includeCompletionsWithSnippetText,
+      includeCompletionsWithClassMemberSnippets: this.getCompleteOptions(language).includeCompletionsWithClassMemberSnippets,
     }
     return preferences
   }
